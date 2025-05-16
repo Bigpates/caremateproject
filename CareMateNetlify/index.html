@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareMate - AI Healthcare Assistant</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00D88D',
+                        secondary: '#4BE3E3',
+                        dark: '#0A0A0A',
+                        'dark-light': '#1a1a1a',
+                        'dark-border': '#2a2a2a',
+                        'text-light': '#B0B0B0'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background-color: #2a2a2a;
+            border-radius: 3px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #B0B0B0;
+        }
+
+        /* Message animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message-animation {
+            animation: fadeIn 0.3s ease forwards;
+        }
+    </style>
+</head>
+<body class="bg-dark text-white font-sans min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-dark border-b border-dark-border sticky top-0 z-10 backdrop-blur-md bg-opacity-80">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary flex items-center transition-colors hover:text-secondary">
+                <i class="fas fa-robot mr-2"></i>
+                CareMate
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Chat Container -->
+    <main class="flex-1 flex items-center justify-center p-4">
+        <div class="w-full max-w-4xl bg-dark-light rounded-xl overflow-hidden shadow-lg border border-dark-border flex flex-col h-[600px]">
+            <!-- Chat Header -->
+            <div class="bg-dark p-4 border-b border-dark-border flex justify-between items-center">
+                <div class="font-semibold text-lg">CareMate Chat</div>
+                <div class="text-text-light">
+                    <i class="fas fa-info-circle cursor-pointer hover:text-primary transition-colors"></i>
+                </div>
+            </div>
+            
+            <!-- Chat Messages -->
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-6 bg-gradient-to-br from-dark to-dark-light">
+                <!-- AI welcome message -->
+                <div class="flex items-start max-w-[75%] message-animation">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-gray-600 to-gray-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mr-3">
+                        AI
+                    </div>
+                    <div class="bg-dark p-4 rounded-2xl rounded-tl-none border border-dark-border">
+                        <p>Hello! I'm CareMate, your personal healthcare assistant. How can I help you today?</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Input -->
+            <div class="p-4 border-t border-dark-border bg-dark-light">
+                <form id="chat-form" class="flex items-end bg-dark rounded-xl p-3 border border-dark-border focus-within:border-primary transition-colors">
+                    <textarea 
+                        id="message-input" 
+                        class="flex-1 bg-transparent border-none text-white resize-none max-h-32 focus:outline-none"
+                        placeholder="Type your message..."
+                        rows="1"
+                    ></textarea>
+                    <button 
+                        type="submit" 
+                        id="send-button" 
+                        class="bg-gradient-to-r from-primary to-secondary text-dark w-10 h-10 rounded-lg flex items-center justify-center ml-2 hover:opacity-90 transition-all hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+                        disabled
+                    >
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
